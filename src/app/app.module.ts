@@ -35,6 +35,7 @@ import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.compo
 import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/view-quiz-questions.component';
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {UserProfileComponent} from './pages/user/userProfile/userProfile.component';
 
 import { SidebarComponent as UserSidebar } from './pages/user/sidebar/sidebar.component';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
@@ -67,6 +68,7 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     LoadQuizComponent,
     InstructionsComponent,
     StartComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

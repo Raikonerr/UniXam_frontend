@@ -20,6 +20,7 @@ import { StartComponent } from './pages/user/start/start.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
+import { UserProfileComponent } from './pages/user/userProfile/userProfile.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,7 @@ const routes: Routes = [
         component: WelcomeComponent,
       },
       {
-        path: 'profile',
+        path: 'userProfile',
         component: ProfileComponent,
       },
       {
@@ -94,6 +95,10 @@ const routes: Routes = [
         component: InstructionsComponent,
       },
     ],
+  },
+  {
+    path: 'user/profile',
+    component: UserProfileComponent,
   },
   {
     path: 'start/:id',

@@ -1,5 +1,5 @@
 <!-- <h1>this is navbar</h1> -->
-<mat-toolbar color="accent">
+<mat-toolbar color="">
   <a
     routerLink="/"
     mat-icon-button
@@ -8,7 +8,7 @@
   >
     <mat-icon>menu_book</mat-icon>
   </a>
-  <span>Examportal</span>
+  <span>UniXam</span>
   <span class="example-spacer"></span>
   <a
     *ngIf="!isLoggedIn"
@@ -41,11 +41,21 @@
   </a>
 
   <button
-    *ngIf="isLoggedIn && user"
+    *ngIf="isLoggedIn && user && userRole === 'NORMAL'"
+    class="example-icon favorite-icon ml20"
+    mat-button
+    routerLink="/user/profile"
+    aria-label="Example icon-button with user icon"
+  >
+    {{ user.username }}
+  </button>
+
+  <button
+    *ngIf="isLoggedIn && user && userRole === 'ADMIN'"
     class="example-icon favorite-icon ml20"
     mat-button
     routerLink="/admin/profile"
-    aria-label="Example icon-button with heart icon"
+    aria-label="Example icon-button with admin icon"
   >
     {{ user.username }}
   </button>

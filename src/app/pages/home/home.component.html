@@ -3,7 +3,8 @@
     <div class="row mt20">
       <div class="col-md-6 offset-md-3 text-center">
         <h1>Welcome to Examportal</h1>
-        <button mat-raised-button color="accent">Home Page</button>
+        <button *ngIf="userRole === 'NORMAL'" mat-raised-button color="accent" routerLink="user-dashboard/0">Home Page</button>
+        <button *ngIf="userRole === 'ADMIN'" mat-raised-button color="accent" routerLink="admin">Admin Dashboard</button>
       </div>
     </div>
   </div>
