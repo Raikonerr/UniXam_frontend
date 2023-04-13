@@ -1,5 +1,5 @@
 <!-- <h1>this is navbar</h1> -->
-<mat-toolbar color="">
+<mat-toolbar color="primary">
   <a
     routerLink="/"
     mat-icon-button
@@ -8,7 +8,7 @@
   >
     <mat-icon>menu_book</mat-icon>
   </a>
-  <span>UniXam</span>
+  <span class="nameLogo">UniXam</span>
   <span class="example-spacer"></span>
   <a
     *ngIf="!isLoggedIn"
@@ -59,4 +59,7 @@
   >
     {{ user.username }}
   </button>
+
 </mat-toolbar>
+
+

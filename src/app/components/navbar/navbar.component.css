@@ -3,6 +3,23 @@
 }
 
 .mat-toolbar{
-  background: #03989E;
+
   margin-bottom: 20px;
+}
+.mat-icon{
+  color: white;
+
+}
+.mat-button{
+  color: white;
+}
+
+.nameLogo{
+
+  background: -webkit-linear-gradient(#ffffff, antiquewhite);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
 }

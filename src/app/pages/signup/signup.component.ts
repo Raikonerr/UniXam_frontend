@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private userService: UserService, private snack: MatSnackBar) {}
+  constructor(private userService: UserService, private snack: MatSnackBar, private router: Router) {}
 
   public user = {
     username: '',
@@ -48,6 +49,7 @@ export class SignupComponent implements OnInit {
       (data: any) => {
         //success
         console.log(data);
+        this.router.navigate(['/login']);
         //alert('success');
         Swal.fire('Successfully done !!', 'User id is ' + data.id, 'success');
       },

@@ -21,7 +21,7 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
 import { UserProfileComponent } from './pages/user/userProfile/userProfile.component';
-
+import {UpdateQuestionComponent} from './pages/admin/update-question/update-question.component';
 const routes: Routes = [
   {
     path: '',
@@ -48,7 +48,7 @@ const routes: Routes = [
         component: WelcomeComponent,
       },
       {
-        path: 'userProfile',
+        path: 'profile',
         component: ProfileComponent,
       },
       {
@@ -79,6 +79,10 @@ const routes: Routes = [
         path: 'add-question/:id/:title',
         component: AddQuestionComponent,
       },
+      {
+        path: 'update-question/:id/:title',
+        component: UpdateQuestionComponent,
+      }
     ],
   },
   {

@@ -15,7 +15,7 @@ export class StartComponent implements OnInit {
   id;
   questions;
 
-  marksGot = 0;
+  marksGot: number  = 0;
   correctAnswers = 0;
   attempted = 0;
 
@@ -40,6 +40,11 @@ export class StartComponent implements OnInit {
     this._question.getQuestionsOfQuizForTest(this.id).subscribe(
       (data: any) => {
         this.questions = data;
+
+        // Debug: Log maxMarks for each question
+        this.questions.forEach((q, index) => {
+          console.log(`Question ${index + 1} maxMarks:`, q.quiz.maxMarks);
+        });
 
         this.timer = this.questions.length * 2 * 60;
 
@@ -75,8 +80,8 @@ export class StartComponent implements OnInit {
   }
 
   startTimer() {
-    let t = window.setInterval(() => {
-      //code
+    const t = window.setInterval(() => {
+      // code
       if (this.timer <= 0) {
         this.evalQuiz();
         clearInterval(t);
@@ -99,9 +104,9 @@ export class StartComponent implements OnInit {
 
 
   getFormattedTime() {
-    let hh = Math.floor(this.timer / 3600);
-    let mm = Math.floor(this.timer / 60);
-    let ss = this.timer - mm * 60;
+    const hh = Math.floor(this.timer / 3600);
+    const mm = Math.floor(this.timer / 60);
+    const ss = this.timer - mm * 60;
     return `${hh} hour : ${mm} min : ${ss} sec`;
   }
 
@@ -115,20 +120,40 @@ export class StartComponent implements OnInit {
   }
 
   evalQuiz() {
-    //calculation
-    //call to server to check questions
-    console.log("Sending questionResponses:", this.getQuestionResponses());
+    // Reset the variables before processing
+    this.marksGot = 0;
+    this.correctAnswers = 0;
+    this.attempted = 0;
 
-    //calculation
-    //call to server to check questions
+    // ... Rest of the code
+
     this._question
       .evalQuiz(this.getQuestionResponses())
       .subscribe(
         (data: any) => {
           console.log(data);
-          this.marksGot = data.marksScored;
-          this.correctAnswers = data.correctAnswer;
-          this.attempted = data.questionAttempted;
+
+          // tslint:disable-next-line:radix
+          const totalMaxMarks: number = this.questions.reduce((acc, q): number => acc + parseInt(q.quiz.maxMarks), 0);
+          const marksPerQuestion: number = totalMaxMarks / this.questions.length;
+
+          console.log('totalMaxMarks:', totalMaxMarks);
+          console.log('marksPerQuestion:', marksPerQuestion);
+
+          this.questions.forEach((q) => {
+            console.log('Question:', q);
+            if (q.givenAnswer == q.answer) {
+              this.correctAnswers++;
+              this.marksGot = this.marksGot + marksPerQuestion;
+              console.log('Correct answer, updated marksGot:', this.marksGot);
+            }
+            if (q.givenAnswer.trim() != '') {
+              this.attempted++;
+            }
+          });
+
+          this.marksGot = Math.floor(this.marksGot);
+
           this.isSubmit = true;
         },
         (error) => {
